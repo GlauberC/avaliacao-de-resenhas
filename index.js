@@ -2,8 +2,9 @@ app = require('./controller/app')
 const routerPython = require('./controller/python')
 
 app.get('/', (req, res) => {
-    res.send('Funfa')
+    res.render('index')
 })
+
 
 app.use('/python', routerPython)
 const PORT = process.env.PORT || 3000

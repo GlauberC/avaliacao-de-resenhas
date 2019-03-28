@@ -12,11 +12,13 @@ var options = {
 
 };
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     options.args = [req.body.resenha]
     var test = new PythonShell('predict.py', options);
-    test.on('message', function(message){
-        res.send(message)
+    
+    test.on('message', message => {
+        var resp = message == '[1]'? 'positiva':"negativa"
+        res.render('avaliacao', {resp: resp})
     })
 })
 module.exports = router
